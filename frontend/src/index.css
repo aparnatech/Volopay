@@ -1,4 +1,7 @@
 
+body{
+  margin :0
+}
 #root {
   margin: 0;
   padding: 0;
@@ -7,6 +10,7 @@
   display: inline-block;
   --color-primary: #f36;
   --color-green : green;
+  background-color: #fff;
 }
 #volopay_Color{
   color: var(--color-primary);
@@ -20,7 +24,7 @@
 .margin_0{
   margin: 0!important;
 }
-.volopay_box_shadow {
+#volopay_box_shadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 6px;
 }
@@ -37,4 +41,10 @@
  -moz-transform-style: preserve-3d; 
  -ms-transform-style: preserve-3d; 
  transform-style: preserve-3d;
+}
+.fontSize14{
+  font-size: 14px
+}
+.fontweight700{
+  font-weight: 700
 }

@@ -1,12 +1,33 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { Tabs, Tab, Typography, Box } from "@material-ui/core";
+import {
+  Tabs,
+  Tab,
+  Typography,
+  Box,
+  AppBar,
+  makeStyles,
+} from "@material-ui/core";
 import YourCard from "../YourCard";
 import AllCards from "../AllCards";
+import BlockedCards from "../BlockedCards";
 import { useDispatch } from "react-redux";
 import { cardDataList } from "../../../../action/cardData";
 
+const useStyles = makeStyles((theme) => ({
+  toolBar: {
+    margin: "4rem 0",
+  },
+  tabBar: {
+    margin: "2rem",
+  },
+  inputRoot: {
+    boxShadow: "none !important",
+    backgroundColor: "#fff",
+    color: "#4c4c4c",
+  },
+}));
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,6 +62,7 @@ function a11yProps(index) {
 }
 
 export default function NavTabs() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
 
@@ -56,7 +78,13 @@ export default function NavTabs() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <AppBar
+        position="fixed"
+        className={classes.toolBar}
+        classes={{
+          root: classes.inputRoot,
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -66,15 +94,15 @@ export default function NavTabs() {
           <Tab label="All" {...a11yProps(1)} />
           <Tab label="Blocked" {...a11yProps(2)} />
         </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
+      </AppBar>
+      <TabPanel value={value} index={0} className={classes.tabBar}>
         <YourCard />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} className={classes.tabBar}>
         <AllCards data={cardData} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
+      <TabPanel value={value} index={2} className={classes.tabBar}>
+        <BlockedCards />
       </TabPanel>
     </Box>
   );

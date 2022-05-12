@@ -1,7 +1,6 @@
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import React from "react";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -9,14 +8,13 @@ const BorderLinearProgress = withStyles((theme) => ({
     borderRadius: 5,
   },
   colorPrimary: {
-    backgroundColor: 'green',
+    backgroundColor: "green",
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: '#f36',
+    backgroundColor: "#f36",
   },
 }))(LinearProgress);
-
 
 const useStyles = makeStyles({
   root: {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Select,
@@ -13,25 +13,33 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100%",
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    margin: "0.8rem 0rem",
+    backgroundColor: "#e7dbdb4a",
+  },
+  subheader: {
+    color: "#30373770",
   },
 }));
 
 export default function SelectComponent(props) {
-    console.log(props,"props")
-  const cardHolder = props.data.filter((item) => item.cardholder);
   const classes = useStyles();
-
   const [age, setAge] = React.useState("");
+  const cardHolder = props.data.filter((item) => item.cardholder);
 
   const handleChange = (event) => {
     setAge(event.target.value);
-    props.onhandleClick(event.target.value)
+    props.onhandleClick(event.target.value);
   };
-  console.log(props.data, "age");
+
+  useEffect(() => {
+    if (props.onClear) {
+      setAge("");
+      props.onClearAction(false);
+    }
+  }, [props]);
   return (
-    <Grid item md={6}>
-      <span>cardholder</span>
+    <Grid item md={12}>
+      <span className={classes.subheader}>Cardholder</span>
       <FormControl className={classes.formControl}>
         <Select
           value={age}
@@ -40,7 +48,7 @@ export default function SelectComponent(props) {
           className={classes.selectEmpty}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value={0} disabled>
+          <MenuItem value="" disabled>
             Select Cardholder
           </MenuItem>
           {cardHolder.map((item, index) => (
